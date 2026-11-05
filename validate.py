@@ -1,4 +1,4 @@
-"""Validation script run by GitHub Actions."""
+
 import pathlib
 import py_compile
 import subprocess
@@ -6,7 +6,7 @@ import sys
 
 failed = False
 
-# 1. Syntax-check every Python file in the repo
+#Syntax-check every Python file in the repo
 for f in pathlib.Path(".").rglob("*.py"):
     if ".git" in f.parts:
         continue
@@ -17,7 +17,7 @@ for f in pathlib.Path(".").rglob("*.py"):
         print(f"FAILED  {f}\n{e.msg}")
         failed = True
 
-# 2. Make sure product.py runs without errors
+# Make sure product.py runs without errors
 result = subprocess.run([sys.executable, "product.py"], capture_output=True, text=True)
 print(result.stdout)
 if result.returncode != 0:
